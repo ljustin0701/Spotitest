@@ -1,20 +1,26 @@
 package ljust.com.spotitest;
 
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
+import android.app.FragmentManager;
 import android.os.Bundle;
 
-import ljust.com.spotitest.fragments.SpotFragment;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-public class MainActivity extends AppCompatActivity {
+import ljust.com.spotitest.view.SpotFragment;
 
+/**
+ * Single Main Activity with fragment swapping
+ */
+public class MainActivity extends BaseActivity {
+
+    @Inject
+    @Named("activityFragmentManager")
     FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mFragmentManager = getSupportFragmentManager();
     }
 
     @Override
@@ -22,4 +28,5 @@ public class MainActivity extends AppCompatActivity {
         mFragmentManager.beginTransaction().add(R.id.fragment_container, SpotFragment.create(), "spot").commit();
         super.onStart();
     }
+
 }
