@@ -1,4 +1,4 @@
-package ljust.com.spotitest.fragments;
+package ljust.com.spotitest.view;
 
 import org.junit.Test;
 
