@@ -22,6 +22,5 @@ public abstract class MainActivityModule {
 
     @Binds
     @ActivityScope
-    abstract Activity activity(MainActivity mainActivity);
-
+    abstract Activity activity(MainActivity activity);
 }

@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId "ljust.com.spotitest"
         minSdkVersion 17
@@ -10,6 +9,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+            }
+        }
     }
     buildTypes {
         release {
@@ -17,22 +21,52 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions{
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+    maven {
+        url 'https://maven.google.com/'
+        name 'Google'
+    }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        androidTestCompile 'com.google.code.findbugs:jsr305:3.0.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        androidTestImplementation 'com.google.code.findbugs:jsr305:3.0.1'
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:25.4.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
+    implementation 'com.android.support:recyclerview-v7:25.4.0'
+    implementation 'com.spotify.sdk:spotify-android-auth:1.0.0@aar'
+    implementation 'com.google.dagger:dagger:2.11'
+    implementation 'com.google.dagger:dagger-android:2.11'
+    implementation 'com.google.dagger:dagger-android-support:2.11'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.8.5'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.8.5'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-jackson:2.3.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'com.ryanharter.auto.value:auto-value-parcel-adapter:0.2.5'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.5'
     annotationProcessor "com.google.dagger:dagger-compiler:2.11"
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
-    compile 'com.google.dagger:dagger:2.11'
-    compile 'com.google.dagger:dagger-android-support:2.11'
+    annotationProcessor 'com.google.auto.value:auto-value:1.5.1'
+    compileOnly 'com.google.auto.value:auto-value:1.5.1'
+    compileOnly 'com.jakewharton.auto.value:auto-value-annotations:1.5'
 }

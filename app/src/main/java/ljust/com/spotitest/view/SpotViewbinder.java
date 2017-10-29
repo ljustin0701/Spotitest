@@ -1,5 +1,7 @@
 package ljust.com.spotitest.view;
 
+import ljust.com.spotitest.entity.NewReleases;
+
 public interface SpotViewbinder {
-    void show(Integer number);
+    void showData(NewReleases newReleases);
 }

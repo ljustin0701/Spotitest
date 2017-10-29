@@ -3,6 +3,7 @@ package ljust.com.spotitest.dagger.components;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import dagger.android.AndroidInjector;
 import ljust.com.spotitest.SpotApp;
 import ljust.com.spotitest.dagger.modules.AppModule;
 
@@ -11,6 +12,8 @@ import ljust.com.spotitest.dagger.modules.AppModule;
  */
 @Singleton
 @Component(modules = AppModule.class )
-public interface AppComponent {
-    void inject(SpotApp app);
+public interface AppComponent extends AndroidInjector<SpotApp> {
+    @Component.Builder
+    abstract class Builder extends AndroidInjector.Builder<SpotApp> {
+    }
 }
