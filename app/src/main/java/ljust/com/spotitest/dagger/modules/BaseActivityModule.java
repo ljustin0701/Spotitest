@@ -14,7 +14,7 @@ import ljust.com.spotitest.dagger.scopes.ActivityScope;
 /**
  * Module for BaseActivity that provides dependencies at the Activity level
  */
-@Module
+@Module(includes = {NetworkingModule.class, PicassoModule.class})
 public abstract class BaseActivityModule {
 
     @Binds

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Spotitest</string>
+    <string name="by_artist">By %s</string>
+    <string name="new_releases">New Releases</string>
 </resources>
